@@ -1,0 +1,21 @@
+import discord
+intents = discord.Intents.default()
+
+intents.message_content = True
+client = discord.Client(intents=intents)
+@client.event
+async def on_ready():
+    print(f'{client.user} olarak giriş yaptık')
+@client.event   #client istemci botu temsil eden ana sınıftır . Discord API ile bağlantı kurmaktan gelen mesajları ve olayları işlemek ve daha fazlasından sorumludur.
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith('Merhaba Felix'):
+        await message.channel.send("merhaba")
+    elif message.content.startswith('Salça selam'):
+        await message.channel.send("aleykümselam")
+    elif message.content.startswith('napıyorsun'):
+        await message.channel.send("selam")
+    else:
+        await message.channel.send(message.content)
+client.run("MTMwMjU5NDg0MDMzNjI2OTM2Mw.G8-D8t.fVKK7fjvxtqCHSpog_7AVOh67dvl_bQPtWEzFk")
